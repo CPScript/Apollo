@@ -1,2 +1,1 @@
-# Apollo
-The Apollo protection tool
+a little tool that will give you te status of a website...
