@@ -43,7 +43,7 @@ def check_server_status(url):
         print('|!| WARNING! "{}" Is a high latency '.format(latency))  
         print("===================================")
     elif latency == 750:
-        print("[!!!] Latency has passed 750! please, check your network's traffic!!!", 'WARNING: {}'.format(latency))
+        print("[!!!] Latency has passed 750! [!!!]  ", 'WARNING: {}'.format(latency))
         return False
     else:
         print('latency: {} ms'.format(latency))
