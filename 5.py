@@ -38,7 +38,7 @@ while True:
         s.send(b'<large_packet>', max_packet_size + 99999999)
         # Decrease the delay between each packet
         time.sleep(0.0000001)
-        # Send multiple packets at once
+        # just random packet multiplyers... lol 
         s.send(b'<additional_packet>', max_packet_size + 99999999)
         s.send(b'<1_packet>', max_packet_size + 99999999)
         s.send(b'<2_packet>', max_packet_size + 45645647)
