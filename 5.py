@@ -17,9 +17,6 @@ max_packet_size = 65535
 time.sleep(2)
 print(" ")
 print('[+] Connection established')
-print(" ")
-print(" ")
-time.sleep(2)
 print(">>>-- Loading.... ------------------------------------------->")
 
 time.sleep(5)
