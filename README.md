@@ -1,6 +1,8 @@
 # Apollo Kernel - x86_64 Operating System
 
-A  x86_64 operating system kernel with a cool architecture, improved input handling, and modular design. This implementation maintains visual compatibility with previous versions while featuring an entirely new codebase built from the ground up. **From Scratch** (This wouldn't exist if someone didn't treatin a DMCA takedown)
+A  x86_64 operating system kernel with a cool architecture, improved input handling, and modular design. This implementation maintains visual compatibility with previous versions while featuring an entirely new codebase built from the ground up. 
+
+**From Scratch** (**This wouldn't exist if someone didn't treatin a DMCA takedown**)
 
 <img width="488" height="366" alt="491976349-fb7e5b1e-c90e-494c-afa4-c238eef3e86d" src="https://github.com/user-attachments/assets/f334aa19-5c7e-4ce7-b293-c8573310ba28" />
 
