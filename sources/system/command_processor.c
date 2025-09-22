@@ -776,7 +776,7 @@ static void execute_command(const char* input) {
         terminal_set_color(14, 0);
         terminal_write_string("Kernel Information:\n");
         terminal_set_color(7, 0);
-        terminal_write_string("  Kernel Version:    Apollo v1.0\n");
+        terminal_write_string("  Kernel Version:    Apollo v1.1.2\n");
         terminal_write_string("  Architecture:      x86_64\n");
         terminal_write_string("  Build Date:        " __DATE__ " " __TIME__ "\n");
         terminal_write_string("  Compiler:          GCC " __VERSION__ "\n\n");
@@ -979,7 +979,7 @@ static void execute_command(const char* input) {
         terminal_write_string("Username:      ");
         terminal_write_string(shell.current_user);
         terminal_write_string("\n");
-        terminal_write_string("Shell:         Apollo Shell v1.0\n");
+        terminal_write_string("Shell:         Apollo Shell v1.1.2\n");
         terminal_write_string("Session ID:    ");
         terminal_write_uint(shell.session_id);
         terminal_write_string("\n");
@@ -1235,4 +1235,5 @@ void command_processor_handle_input(uint8_t scan_code) {
             }
         }
     }
+
 }
