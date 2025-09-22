@@ -1,13 +1,13 @@
 # Apollo Kernel - x86_64 Operating System
 
-A  x86_64 operating system kernel with a cool architecture, improved input handling, and modular design. This implementation maintains visual compatibility with previous versions while featuring an entirely new codebase built from the ground up. 
+A  x86_64 operating system kernel with a cool architecture, improved input handling, modular design, text editor, a fully file system, and more. This implementation maintains visual compatibility with previous versions while featuring an entirely new codebase built from the ground up. 
 
-**From Scratch** (**This wouldn't exist if someone didn't treatin a DMCA takedown <3 thank you<3**)
+> (The image below is from Apollo v1.0.0)
 
 <img width="488" height="366" alt="491976349-fb7e5b1e-c90e-494c-afa4-c238eef3e86d" src="https://github.com/user-attachments/assets/f334aa19-5c7e-4ce7-b293-c8573310ba28" />
 
 
-## Architecture Overview
+# Overview
 
 ### Core Design Principles
 - **Modular Component Architecture**: Cleanly separated subsystems with well-defined interfaces
@@ -110,7 +110,9 @@ make verify
 | `reboot`  | Restart system                 | `reboot`             |
 | `shutdown`| Halt system                    | `shutdown`           |
 
-### Example images
+### Example images 
+
+> (The image below is from Apollo v1.0.0)
 
 <img width="630" height="402" alt="491976426-57325cc4-dd78-47cf-8827-804cf53cb185" src="https://github.com/user-attachments/assets/2725aafa-2fe1-4201-8857-c048301d74d0" />
 
