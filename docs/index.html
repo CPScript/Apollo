@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApolloKernel - x86_64 OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a1a1a;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #cccccc;
+            padding: 1rem 2rem;
+            border: 2px solid #333333;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:hover {
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff6b35;
+        }
+
+        .stat-label {
+            color: #888888;
+            font-size: 0.9rem;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .terminal-mockup {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #333333;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27ca3f; }
+
+        .terminal-content {
+            color: #00ff41;
+        }
+
+        .prompt {
+            color: #ff6b35;
+        }
+
+        .command {
+            color: #ffffff;
+        }
+
+        .output {
+            color: #cccccc;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 0;
+            background: #0f0f0f;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #888888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333333;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b35;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Specs Section */
+        .specs {
+            padding: 8rem 0;
+            background: #0a0a0a;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .specs-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .specs-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .spec-label {
+            color: #888888;
+        }
+
+        .spec-value {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 2rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .code-comment {
+            color: #666666;
+        }
+
+        .code-keyword {
+            color: #ff6b35;
+        }
+
+        .code-string {
+            color: #00ff41;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .container {
+            text-align: center;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 3rem 0;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .footer-section a {
+            color: #888888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+            color: #666666;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-grid, .specs-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Apollo OS</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#specs">Specifications</a></li>
+                <li><a href="https://github.com/CPScript/ApolloKernel" target="_blank">Documentation</a></li>
+                <li><a href="#community">Community</a></li>
+            </ul>
+            <a href="https://github.com/CPScript/ApolloKernel/releases" target="_blank" class="download-btn">Download</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Apollo Operating System</h1>
+                    <p>A x86_64 operating system built from the ground up. Featuring a GRUB multiboot loader, custom filesystems(Complete UNIX-like hierarchy), built in text editor, custom shell, and full networking capabilities.</p>
+                    <div class="first-buttons">
+                        <a href="https://github.com/CPScript/ApolloKernel/releases" target="_blank" class="btn-primary">Download v1.7.0</a>
+                        <a href="https://github.com/CPScript/ApolloKernel" target="_blank" class="btn-secondary">Documentation</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">512B</div>
+                            <div class="stat-label">Block Size</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">256</div>
+                            <div class="stat-label">Max Files</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">x86_64</div>
+                            <div class="stat-label">Architecture</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="terminal-mockup">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                        </div>
+                        <div class="terminal-content">
+                            <div><span class="prompt">apollo@info></span> <span class="command">OS Requirements</span></div>
+                            <div class="output">Apollo Operating System v1.7.0</div>
+                            <div class="output">Architecture: x86_64</div>
+                            <div class="output">CPU: Intel Core 2 Duo or AMD Athlon 64 (minimum)</div>
+                            <div class="output">Memory: 128MB</div>
+                            <div class="output">Storage: 50MB free disk space</div>
+                            <br>
+                            <div><span class="prompt">apollo@info></span> <span class="command">Extra Specifications</span></div>
+                            <div class="output">SSE instruction set required</div>
+                            <div class="output">PAE (Physical Address Extension) support mandatory</div>
+                            <div class="output">Kernel heap allocates 16MB</div>
+                            <div class="output">Apollo FS with 512-byte blocks</div>
+                            <div class="output">GRUB-compatible boot partition required</div>
+                            <div class="output">System operates in 80x25 text mode</div>
+                            <br>
+                            <div><span class="prompt">apollo></span> <span class="command">_</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Features</h2>
+                <p>Built with security, performance, and reliability at its core. Apollo OS delivers features modern systems demand.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Security Framework</h3>
+                    <p>Secure boot with TPM-style attestation, runtime monitoring, packet filtering firewall, and security policies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗄️</div>
+                    <h3>Custom Apollo Filesystem</h3>
+                    <p>High-performance filesystem with 512-byte blocks, efficient allocation, and UNIX-like directory hierarchy supporting up to 256 files and 64 directories.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Full TCP/IP Network Stack</h3>
+                    <p>Complete networking implementation with RTL8139 driver support, DHCP client, interface management, and connectivity testing capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Optimized Memory Management</h3>
+                    <p>PAE-enabled paging system with efficient heap allocation, process isolation, and memory protection for system stability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>System Tools</h3>
+                    <p>Built-in text editor, shell commands, process manager, and system utilities providing a complete operating environment out of the box.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Round-Robin Process Scheduling</h3>
+                    <p>Efficient process management with fair scheduling algorithms, ensuring optimal resource utilization and system responsiveness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="specs" id="specs">
+        <div class="container">
+            <div class="specs-grid">
+                <div class="specs-content">
+                    <h2>Technical Specifications</h2>
+                    <ul class="specs-list">
+                        <li>
+                            <span class="spec-label">Kernel Version</span>
+                            <span class="spec-value">1.7.0</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Architecture</span>
+                            <span class="spec-value">x86_64 Long Mode</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Boot Method</span>
+                            <span class="spec-value">GRUB Multiboot</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Memory Model</span>
+                            <span class="spec-value">Paging (PAE + SSE)</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Filesystem</span>
+                            <span class="spec-value">Apollo FS (512B blocks)</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Network Driver</span>
+                            <span class="spec-value">RTL8139 Ethernet</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Display Mode</span>
+                            <span class="spec-value">VGA Text (80x25)</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Security</span>
+                            <span class="spec-value">Secure Boot + Firewall</span>
+                        </li>
+                    </ul>
+                    <a href="https://github.com/CPScript/ApolloKernel/releases" target="_blank" class="btn-primary">Get Apollo OS</a>
+                </div>
+                <div class="code-block">
+<span class="code-comment">// Apollo OS Kernel Entry Point</span>
+<pre><code>
+#include "types.h"
+#include "terminal.h"
+#include "filesystem.h"
+#include "network_manager.h"
+
+#define APOLLO_VERSION "1.7.0"
+#define APOLLO_ARCH "x86_64"
+</code>
+
+<span class="code-keyword">static void</span> apollo_initialize_all_systems(<span class="code-keyword">void</span>) {
+    terminal_initialize();
+    heap_allocator_initialize();
+    filesystem_initialize();
+    network_manager_initialize();
+    process_manager_initialize();
+    security_framework_initialize();
+    
+    terminal_write_string(<span class="code-string">"Apollo OS v1.7.0 Ready\n"</span>);
+}
+
+<span class="code-keyword">int</span> kernel_main(<span class="code-keyword">void</span>) {
+    apollo_display_startup_sequence();
+    apollo_initialize_all_systems();
+    
+    <span class="code-keyword">while</span> (<span class="code-keyword">true</span>) {
+        command_processor_run();
+    }
+}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="download">
+        <div class="container">
+            <h2>Ready to Experience Apollo OS?</h2>
+            <p>Download the latest version and discover what this operating system can offer.</p>
+            <div class="hero-buttons">
+                <a href="https://github.com/CPScript/ApolloKernel/releases" target="_blank" class="btn-primary">Download v1.7.0</a>
+                <a href="https://github.com/CPScript/ApolloKernel" target="_blank" class="btn-secondary">View Source Code</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <a href="https://github.com/CPScript/ApolloKernel/releases" target="_blank">Download</a>
+                    <a href="https://github.com/CPScript/ApolloKernel#installation" target="_blank">Installation Guide</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Developers</h3>
+                    <a href="https://github.com/CPScript/ApolloKernel" target="_blank">Documentation</a>
+                    <a href="https://github.com/CPScript/ApolloKernel#contributing" target="_blank">Contributing</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <a href="https://github.com/CPScript/ApolloKernel" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Apollo Operating System.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        function typeText(element, text, speed = 50) {
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .specs-content, .section-header').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
