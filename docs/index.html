@@ -189,8 +189,6 @@
             padding: 1.5rem;
             border: 1px solid #333333;
             font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.9rem;
-            line-height: 1.4;
         }
 
         .terminal-header {
@@ -207,10 +205,12 @@
 
         .dot-red { background: #ff5f56; }
         .dot-yellow { background: #ffbd2e; }
-        .dot-green { background: #27ca3f; }
+        .dot-green { background: #27c93f; }
 
         .terminal-content {
             color: #00ff41;
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
 
         .prompt {
@@ -225,12 +225,7 @@
             color: #cccccc;
         }
 
-        /* Features Section */
-        .features {
-            padding: 8rem 0;
-            background: #0f0f0f;
-        }
-
+        /* Section Styles */
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -249,9 +244,15 @@
             margin: 0 auto;
         }
 
+        /* Features Section */
+        .features {
+            padding: 8rem 0;
+            background: #0f0f0f;
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
@@ -260,7 +261,7 @@
             padding: 2rem;
             border-radius: 12px;
             border: 1px solid #333333;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
@@ -269,25 +270,19 @@
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff6b35, #f7931e);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         .feature-card h3 {
             font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
         }
 
         .feature-card p {
-            color: #cccccc;
+            color: #888888;
             line-height: 1.6;
         }
 
@@ -354,6 +349,164 @@
             color: #00ff41;
         }
 
+        /* Version Comparison Section */
+        .version-comparison {
+            padding: 8rem 0;
+            background: #0f0f0f;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .version-card {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .version-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+        }
+
+        .version-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #2a2a2a;
+        }
+
+        .version-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 0.25rem;
+        }
+
+        .version-label {
+            color: #888888;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .feature-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ff6b35;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .version-features {
+            list-style: none;
+        }
+
+        .version-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: #cccccc;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .version-features li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #666666;
+            font-weight: 700;
+        }
+
+        .feature-title {
+            color: #ffffff;
+            font-weight: 600;
+            display: block;
+        }
+
+        .feature-detail {
+            color: #888888;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 0.15rem;
+            padding-left: 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .new-feature {
+            background: rgba(255, 107, 53, 0.08);
+            padding: 0.5rem;
+            padding-left: 1.25rem;
+            margin: 0.35rem 0;
+            border-radius: 4px;
+            border-left: 2px solid #ff6b35;
+        }
+
+        .new-feature:before {
+            content: '✨';
+            position: absolute;
+            left: 0.35rem;
+            font-size: 0.7rem;
+        }
+
+        .new-feature .feature-title {
+            color: #ff6b35;
+        }
+
+        .version-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .stat-box {
+            background: #0f0f0f;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid #2a2a2a;
+            text-align: center;
+        }
+
+        .stat-box-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+        }
+
+        .stat-box-label {
+            font-size: 0.7rem;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.25rem;
+        }
+
         /* CTA Section */
         .cta {
             padding: 8rem 0;
@@ -379,15 +532,6 @@
         .cta .container {
             text-align: center;
         }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
 
         /* Footer */
         footer {
@@ -447,7 +591,7 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-grid, .specs-grid {
+            .hero-grid, .specs-grid, .comparison-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
@@ -463,6 +607,10 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -473,6 +621,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#specs">Specifications</a></li>
+                <li><a href="#versions">Versions</a></li>
                 <li><a href="https://github.com/CPScript/ApolloKernel" target="_blank">Documentation</a></li>
                 <li><a href="#community">Community</a></li>
             </ul>
@@ -485,14 +634,14 @@
             <div class="hero-grid">
                 <div class="hero-content">
                     <h1>Apollo Operating System</h1>
-                    <p>A x86_64 operating system built from the ground up. Featuring a GRUB multiboot loader, custom filesystems(Complete UNIX-like hierarchy), built in text editor, custom shell, and full networking capabilities.</p>
-                    <div class="first-buttons">
+                    <p>A x86_64 operating system built from the ground up. Featuring a GRUB multiboot loader, custom filesystem (Complete UNIX-like hierarchy with 16KB blocks), built in text editor, custom shell, and full networking capabilities.</p>
+                    <div class="hero-buttons">
                         <a href="https://github.com/CPScript/ApolloKernel/releases" target="_blank" class="btn-primary">Download v1.7.0</a>
                         <a href="https://github.com/CPScript/ApolloKernel" target="_blank" class="btn-secondary">Documentation</a>
                     </div>
                     <div class="hero-stats">
                         <div class="stat">
-                            <div class="stat-number">512B</div>
+                            <div class="stat-number">16KB</div>
                             <div class="stat-label">Block Size</div>
                         </div>
                         <div class="stat">
@@ -524,7 +673,7 @@
                             <div class="output">SSE instruction set required</div>
                             <div class="output">PAE (Physical Address Extension) support mandatory</div>
                             <div class="output">Kernel heap allocates 16MB</div>
-                            <div class="output">Apollo FS with 512-byte blocks</div>
+                            <div class="output">Apollo FS with 16KB blocks</div>
                             <div class="output">GRUB-compatible boot partition required</div>
                             <div class="output">System operates in 80x25 text mode</div>
                             <br>
@@ -551,7 +700,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🗄️</div>
                     <h3>Custom Apollo Filesystem</h3>
-                    <p>High-performance filesystem with 512-byte blocks, efficient allocation, and UNIX-like directory hierarchy supporting up to 256 files and 64 directories.</p>
+                    <p>High-performance filesystem with 16KB blocks, efficient allocation, and UNIX-like directory hierarchy supporting up to 256 files and 64 directories.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌐</div>
@@ -601,7 +750,7 @@
                         </li>
                         <li>
                             <span class="spec-label">Filesystem</span>
-                            <span class="spec-value">Apollo FS (512B blocks)</span>
+                            <span class="spec-value">Apollo FS (16KB blocks)</span>
                         </li>
                         <li>
                             <span class="spec-label">Network Driver</span>
@@ -628,7 +777,7 @@
 
 #define APOLLO_VERSION "1.7.0"
 #define APOLLO_ARCH "x86_64"
-</code>
+</code></pre>
 
 <span class="code-keyword">static void</span> apollo_initialize_all_systems(<span class="code-keyword">void</span>) {
     terminal_initialize();
@@ -649,6 +798,196 @@
         command_processor_run();
     }
 }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="version-comparison" id="versions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Version Evolution</h2>
+                <p>See how Apollo OS has evolved from v1.0.0 to the upcoming v1.7.0 release with major enhancements in networking, security, and system capabilities.</p>
+            </div>
+            <div class="comparison-grid">
+                <div class="version-card">
+                    <div class="version-header">
+                        <div class="version-number">v1.0.0</div>
+                        <div class="version-label">Initial Release</div>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Core System</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Architecture</span>
+                                <span class="feature-detail">x86_64 long mode, basic multiboot2</span>
+                            </li>
+                            <li><span class="feature-title">Memory Management</span>
+                                <span class="feature-detail">Simple heap allocator, no coalescing</span>
+                            </li>
+                            <li><span class="feature-title">Boot Process</span>
+                                <span class="feature-detail">GRUB multiboot2, 32-bit bootstrap</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Display & Input</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">VGA Display</span>
+                                <span class="feature-detail">80x25 text mode, 16-color basic palette</span>
+                            </li>
+                            <li><span class="feature-title">Keyboard</span>
+                                <span class="feature-detail">PS/2 driver, basic scan code handling</span>
+                            </li>
+                            <li><span class="feature-title">Terminal</span>
+                                <span class="feature-detail">Simple output, no scrollback buffer</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">System Software</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Command Shell</span>
+                                <span class="feature-detail">Basic commands: help, clear, echo, date</span>
+                            </li>
+                            <li><span class="feature-title">File System</span>
+                                <span class="feature-detail">Minimal file operations, no persistence</span>
+                            </li>
+                            <li><span class="feature-title">Text Editor</span>
+                                <span class="feature-detail">None available</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Networking</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Network Stack</span>
+                                <span class="feature-detail">Not implemented</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="version-stats">
+                        <div class="stat-box">
+                            <div class="stat-box-number">~10</div>
+                            <div class="stat-box-label">Commands</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-number">~2MB</div>
+                            <div class="stat-box-label">Kernel Size</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="version-card">
+                    <div class="version-header">
+                        <div class="version-number">v1.7.0</div>
+                        <div class="version-label">Upcoming Release</div>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Core System</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Enhanced Memory</span>
+                                <span class="feature-detail">PAE-enabled paging, 16MB heap with block coalescing and automatic defragmentation</span>
+                            </li>
+                            <li><span class="feature-title">Process Manager</span>
+                                <span class="feature-detail">Round-robin scheduler with process isolation and resource management</span>
+                            </li>
+                            <li><span class="feature-title">Modular Architecture</span>
+                                <span class="feature-detail">Clean subsystem separation with well-defined interfaces and hardware abstraction</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Display & Input</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Advanced Terminal</span>
+                                <span class="feature-detail">Hardware-abstracted VGA with advanced color management and scrollback buffer</span>
+                            </li>
+                            <li><span class="feature-title">Enhanced Input</span>
+                                <span class="feature-detail">256-byte buffer with state tracking, modifier keys, and interrupt management</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Filesystem</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Apollo FS</span>
+                                <span class="feature-detail">Custom filesystem: 16KB blocks, supports 256 files & 64 directories</span>
+                            </li>
+                            <li><span class="feature-title">Directory Structure</span>
+                                <span class="feature-detail">Complete UNIX-like hierarchy: /bin, /etc, /home, /dev, /tmp, /var</span>
+                            </li>
+                            <li><span class="feature-title">File Operations</span>
+                                <span class="feature-detail">Full CRUD support, permissions, metadata, efficient block allocation</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Networking</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">TCP/IP Stack</span>
+                                <span class="feature-detail">Network protocols: Ethernet frames, ARP resolution, IP routing, ICMP, basic TCP/UDP</span>
+                            </li>
+                            <li><span class="feature-title">RTL8139 Driver</span>
+                                <span class="feature-detail">Realtek NIC with packet TX/RX, interrupt handling, DMA buffers, link detection</span>
+                            </li>
+                            <li><span class="feature-title">DHCP Client</span>
+                                <span class="feature-detail">Automatic IP configuration with lease management and network discovery</span>
+                            </li>
+                            <li><span class="feature-title">Network Tools</span>
+                                <span class="feature-detail">Commands: ifconfig, ping, wget, netstat, nslookup, arp, route, traceroute, dhcp</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">Security</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Security Framework</span>
+                                <span class="feature-detail">TPM-style attestation, runtime integrity monitoring, security policies</span>
+                            </li>
+                            <li><span class="feature-title">Firewall</span>
+                                <span class="feature-detail">Packet filtering, port blocking, protocol rules, connection tracking</span>
+                            </li>
+                            <li><span class="feature-title">Security Audit</span>
+                                <span class="feature-detail">Vulnerability scanning, compliance checking, security event logging</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <div class="category-title">System Tools</div>
+                        <ul class="version-features">
+                            <li><span class="feature-title">Text Editor</span>
+                                <span class="feature-detail">Full editor with C syntax highlighting (keywords, comments, strings, numbers, preprocessor), line numbers, copy/paste, find/goto, save/load, selection support</span>
+                            </li>
+                            <li><span class="feature-title">Advanced Shell</span>
+                                <span class="feature-detail">32-entry command history, tab completion, multi-arg parsing, piping, error handling</span>
+                            </li>
+                            <li><span class="feature-title">System Commands</span>
+                                <span class="feature-detail">30+ commands including: ls, cat, mkdir, rm, cp, mv, ps, top, kill, chmod, df, grep</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="version-stats">
+                        <div class="stat-box">
+                            <div class="stat-box-number">30+</div>
+                            <div class="stat-box-label">Commands</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-number">~4MB</div>
+                            <div class="stat-box-label">Kernel Size</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -733,7 +1072,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .specs-content, .section-header').forEach(el => {
+        document.querySelectorAll('.feature-card, .specs-content, .section-header, .version-card').forEach(el => {
             observer.observe(el);
         });
     </script>
