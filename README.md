@@ -1,4 +1,4 @@
-# Apollo Kernel - x86_64 Operating System
+# Apollo - x86_64 Operatin System made in C and asm
 
 A  x86_64 operating system kernel with a cool architecture, improved input handling, modular design, text editor, a fully file system, and more. This implementation maintains visual compatibility with previous versions while featuring an entirely new codebase built from the ground up. 
 
@@ -168,4 +168,4 @@ gdb distribution/apollo.bin
 
 ---
 
-**Apollo Kernel** - x86_64 Operating System Technology
+**Apollo** - x86_64 Operating System Technology
